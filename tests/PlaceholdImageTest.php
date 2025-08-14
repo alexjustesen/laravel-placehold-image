@@ -12,35 +12,35 @@ it('can generate a basic placeholder URL', function () {
     $placeholdImage = new PlaceholdImage;
     $url = $placeholdImage->generate(300, 200);
 
-    expect($url)->toBe('https://placehold.co/300x200');
+    expect($url)->toBe('https://placehold.co/300x200.png');
 });
 
 it('can generate a square placeholder URL', function () {
     $placeholdImage = new PlaceholdImage;
     $url = $placeholdImage->generate(300);
 
-    expect($url)->toBe('https://placehold.co/300');
+    expect($url)->toBe('https://placehold.co/300.png');
 });
 
 it('can generate URL with background color', function () {
     $placeholdImage = new PlaceholdImage;
     $url = $placeholdImage->generate(300, 200, ['background_color' => 'ff0000']);
 
-    expect($url)->toBe('https://placehold.co/300x200/ff0000');
+    expect($url)->toBe('https://placehold.co/300x200/ff0000.png');
 });
 
 it('can generate URL with background and text colors', function () {
     $placeholdImage = new PlaceholdImage;
     $url = $placeholdImage->generate(300, 200, ['background_color' => 'ff0000', 'text_color' => '00ff00']);
 
-    expect($url)->toBe('https://placehold.co/300x200/ff0000/00ff00');
+    expect($url)->toBe('https://placehold.co/300x200/ff0000/00ff00.png');
 });
 
 it('can generate URL with custom text', function () {
     $placeholdImage = new PlaceholdImage;
     $url = $placeholdImage->generate(300, 200, ['text' => 'Hello World']);
 
-    expect($url)->toBe('https://placehold.co/300x200?text=Hello+World');
+    expect($url)->toBe('https://placehold.co/300x200.png?text=Hello+World');
 });
 
 it('can generate URL with JPEG format', function () {
@@ -83,7 +83,7 @@ it('strips hash from colors', function () {
         ->textColor('#00ff00')
         ->generate(300, 200);
 
-    expect($url)->toBe('https://placehold.co/300x200/ff0000/00ff00');
+    expect($url)->toBe('https://placehold.co/300x200/ff0000/00ff00.png');
 });
 
 it('throws exception for invalid dimensions', function () {

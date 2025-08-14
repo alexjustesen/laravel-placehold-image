@@ -120,7 +120,7 @@ class PlaceholdImage
             $url .= "/{$options['background_color']}";
         }
 
-        if ($options['format'] && $options['format'] !== 'png') {
+        if ($options['format']) {
             $url .= ".{$options['format']}";
         }
 
