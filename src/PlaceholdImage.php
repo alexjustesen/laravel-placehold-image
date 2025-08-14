@@ -14,8 +14,12 @@ class PlaceholdImage
 
     private string $baseUrl = 'https://placehold.co';
 
+    /** @var array<string, mixed> */
     private array $defaultOptions;
 
+    /**
+     * @param  array<string, mixed>  $defaultOptions
+     */
     public function __construct(?Client $client = null, array $defaultOptions = [])
     {
         $this->client = $client ?? new Client;
@@ -28,6 +32,9 @@ class PlaceholdImage
         ], $defaultOptions);
     }
 
+    /**
+     * @param  array<string, mixed>  $options
+     */
     public function generate(int $width, ?int $height = null, array $options = []): string
     {
         $this->validateDimensions($width, $height);
@@ -40,6 +47,9 @@ class PlaceholdImage
         return $url;
     }
 
+    /**
+     * @param  array<string, mixed>  $options
+     */
     public function download(int $width, ?int $height = null, array $options = []): string
     {
         $url = $this->generate($width, $height, $options);
@@ -53,6 +63,9 @@ class PlaceholdImage
         }
     }
 
+    /**
+     * @param  array<string, mixed>  $options
+     */
     public function save(string $path, int $width, ?int $height = null, array $options = []): bool
     {
         $imageData = $this->download($width, $height, $options);
@@ -110,18 +123,25 @@ class PlaceholdImage
         }
     }
 
+    /**
+     * @param  array<string, mixed>  $options
+     */
     private function buildUrl(string $dimensions, array $options): string
     {
         $url = "{$this->baseUrl}/{$dimensions}";
 
-        if ($options['background_color'] && $options['text_color']) {
-            $url .= "/{$options['background_color']}/{$options['text_color']}";
-        } elseif ($options['background_color']) {
-            $url .= "/{$options['background_color']}";
+        $backgroundColor = $options['background_color'] ?? null;
+        $textColor = $options['text_color'] ?? null;
+        $format = $options['format'] ?? null;
+
+        if ($backgroundColor && $textColor && is_string($backgroundColor) && is_string($textColor)) {
+            $url .= "/{$backgroundColor}/{$textColor}";
+        } elseif ($backgroundColor && is_string($backgroundColor)) {
+            $url .= "/{$backgroundColor}";
         }
 
-        if ($options['format'] && $options['format'] !== 'png') {
-            $url .= ".{$options['format']}";
+        if ($format && is_string($format)) {
+            $url .= ".{$format}";
         }
 
         $queryParams = [];
