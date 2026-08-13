@@ -7,8 +7,8 @@ A Laravel package to generate placeholder images from https://placehold.co/.
 * Use strict types where possible
 * Use latest code standards
 * Use Laravel features
-* Support Laravel 11 and 12
-* Support PHP v8.3 and v8.4
+* Support Laravel 11, 12, and 13
+* Support PHP v8.2, v8.3, v8.4, and v8.5
 
 ## Coding Standards
 * All files should have a blank line at the end of the file
